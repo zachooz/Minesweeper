@@ -108,7 +108,7 @@ public class MSButton{
 			fill(139,69,19);
 			rect(x+7, y+12, 4, 12);
 			fill(165,42,42);
-			rect(x+7, y+6, 9, 6);
+			rect(x+7, y+6, 12, 8);
 		}
 	}
 

@@ -1,21 +1,108 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+#preload-01 { background: url(ship.png) no-repeat -9999px -9999px; }
+#preload-02 { background: url(shipBackward.png) no-repeat -9999px -9999px; }
+#preload-03 { background: url(shipForward.png) no-repeat -9999px -9999px; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-    background-color: rgb(200,200,200);
-    color: rgb(0,0,0);
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+html, body {
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -70px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 70px; 
+}
+.site-footer {
+  background-color:rgba(0,0,0,.8);
+}
+
+
+
+body {
+    background-image: url('Clock.jpg');
+	background-size:cover;
+    color: rgb(255,255,255);
     font-family: "Open Sans", sans-serif;
     text-align: center;
 }
-
+#footerText{
+	padding-top:20px;
+}
 #content {
     display: block;
-    margin-left: auto;
-    margin-right: auto
+    margin: auto auto;
+	margin-top:1em;
 }
-
 header {
-	
+	font-family: Arial;
+	font-size:150%;
+	background-color:rgba(0,0,0,.6);
+	margin-top:0;
+	padding:1em;
+	text-align:left;
 }
 
-footer {
-	font-style: italic;
-	font-size: 90%;
+
+h1{
+	font-weight:bold;
+	font-size:350%;
 }
+
