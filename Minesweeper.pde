@@ -1,10 +1,11 @@
 TheBoard b1;
 
-//Declare and initialize NUM_ROWS and NUM_COLS = 20
+//Creates the game boeard
 public class TheBoard{
-	public MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
-	public ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
+	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
+	private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
 
+	//initialize the board
 	public TheBoard(){
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
@@ -13,6 +14,7 @@ public class TheBoard{
 		}
 	}
 
+	//called when left mouse button is pressed
 	public void checkClick(){
 		for(MSButton[] array: buttons){
 			for(MSButton c : array){
@@ -20,6 +22,8 @@ public class TheBoard{
 			}
 		}
 	}
+
+	//called when right mouse button is pressed
 	public void checkFlag(){
 		for(MSButton[] array: buttons){
 			for(MSButton c : array){
@@ -27,6 +31,8 @@ public class TheBoard{
 			}
 		}
 	}
+
+	//called every frame to draw board
 	public void drawBoard(){
 		for(MSButton[] array: buttons){
 			for(MSButton c : array){
