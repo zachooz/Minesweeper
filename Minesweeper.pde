@@ -1,15 +1,18 @@
 TheBoard b1;
-
+Boolean gameOver = false;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
-	private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
 
 	//initialize the board
 	public TheBoard(){
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
-				buttons[i][a] = new MSButton(i*(25),a*(25));
+				double d = Math.random();
+				if(d<.1)
+					buttons[i][a] = new MSButton(i*(25),a*(25), "B");
+				else
+					buttons[i][a] = new MSButton(i*(25),a*(25), "");
 			}
 		}
 	}
@@ -48,16 +51,17 @@ public class MSButton{
 	int theLength = 25;
 	int x;
 	int y;
-	String theText="5";
+	String theText="";
 	boolean isPressed = false;
 	boolean isFlagged = false;
 	boolean isHover = false;
 	color c = color(224, 224, 224);
 	color str = color(0, 0, 0);
 	//instantiates at x and y
-	public MSButton(int x, int y){
+	public MSButton(int x, int y, String theText){
 		this.x=x;
 		this.y=y;
+		this.theText = theText;
 	}
 
 	//checks if mouse is on button
@@ -94,6 +98,12 @@ public class MSButton{
 		fill(c);
 		stroke(str);
 		rect(x,y,theLength,theLength);
+
+		if(gameOver){
+			isPressed = true;
+			setColor(0,0,0);
+			setStroke(25,0,255);
+		}
 
 		//draws text if the button is pressed
 		if(isPressed){
@@ -133,6 +143,9 @@ public class MSButton{
 			isFlagged=false;
 			setColor(0,0,0);
 			setStroke(25,0,255);
+			if(theText.equals("B")){
+				gameOver=true;
+			}
 		}
 	}
 
@@ -161,8 +174,10 @@ public void draw (){
 
 void mousePressed() {
   if (mouseButton == LEFT) {
-    b1.checkClick();
+  	if(!gameOver)
+    	b1.checkClick();
   } else if (mouseButton == RIGHT) {
-    b1.checkFlag();
+  	if(!gameOver)
+    	b1.checkFlag();
   }
 }
