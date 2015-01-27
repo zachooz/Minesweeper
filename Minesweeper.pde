@@ -89,12 +89,14 @@ public class MSButton{
 		stroke(str);
 		rect(x,y,theLength,theLength);
 
-		//draws text
+		//draws text if the button is pressed
 		if(isPressed){
 			fill(255);
 			textSize(15);
 			text(theText,x+12,y+12);
 		}
+
+		//draws flag is the button is flagged
 		if(isFlagged){
 			noStroke();
 			fill(139,69,19);
@@ -104,6 +106,7 @@ public class MSButton{
 		}
 	}
 
+	//if the button is hovered over by the mouse, change the color
 	public void checkHover(){
 		if(checkMouse() && !isPressed){
 			isHover = true;
@@ -112,10 +115,12 @@ public class MSButton{
 		}
 	}
 
+	//if mouse not on object, turn hover off
 	public void hoverOff(){
 		isHover = false;
 	}
 
+	//if button is pressed remove flag and change color
 	public void setPressed(){
 		if(checkMouse() && !isPressed){
 			isPressed = true;
@@ -124,6 +129,8 @@ public class MSButton{
 			setStroke(25,0,255);
 		}
 	}
+
+	//if button is pressed add flag
 	public void setFlag(){
 		if(checkMouse() && !isPressed && !isFlagged){
 			isFlagged=true;
