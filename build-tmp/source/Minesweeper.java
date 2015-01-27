@@ -36,6 +36,13 @@ public class TheBoard{
 			}
 		}
 	}
+	public void checkFlag(){
+		for(MSButton[] array: buttons){
+			for(MSButton c : array){
+				c.setFlag();
+			}
+		}
+	}
 	public void drawBoard(){
 		for(MSButton[] array: buttons){
 			for(MSButton c : array){
@@ -63,6 +70,13 @@ public class MSButton{
 		this.y=y;
 	}
 
+	//checks if mouse is on button
+	private boolean checkMouse(){
+		if(mouseX>x && mouseY>y && mouseX<x+theLength && mouseY<y+theLength)
+			return true;
+		return false;
+	}
+
 	//sets button's text
 	public void setText(String theText){
 		this.theText = theText;
@@ -81,7 +95,8 @@ public class MSButton{
 	//draws button
 	public void drawButton(){
 		//draws rect
-		if(!isPressed && !isFlagged && !isHover){
+		stroke(1);
+		if(!isPressed && !isHover){
 			setColor(224,224,224);
 			setStroke(0,0,0);
 		}
@@ -91,13 +106,22 @@ public class MSButton{
 		rect(x,y,theLength,theLength);
 
 		//draws text
-		fill(0);
-		textSize(15);
-		text(theText,x+12,y+12);
+		if(isPressed){
+			fill(255);
+			textSize(15);
+			text(theText,x+12,y+12);
+		}
+		if(isFlagged){
+			noStroke();
+			fill(139,69,19);
+			rect(x+7, y+12, 4, 12);
+			fill(165,42,42);
+			rect(x+7, y+6, 9, 6);
+		}
 	}
 
 	public void checkHover(){
-		if(mouseX>x && mouseY>y && mouseX<x+25 && mouseY<y+25 && !isPressed){
+		if(checkMouse() && !isPressed){
 			isHover = true;
 			setColor(135,135,135);
 			setStroke(200,200,200);
@@ -109,13 +133,20 @@ public class MSButton{
 	}
 
 	public void setPressed(){
-		if(mouseX>x && mouseY>y && mouseX<x+25 && mouseY<y+25 && !isPressed){
+		if(checkMouse() && !isPressed){
 			isPressed = true;
+			isFlagged=false;
 			setColor(0,0,0);
 			setStroke(25,0,255);
 		}
 	}
-
+	public void setFlag(){
+		if(checkMouse() && !isPressed && !isFlagged){
+			isFlagged=true;
+		} else if(checkMouse() && !isPressed && isFlagged){
+			isFlagged=false;
+		}
+	}
 }
 
 public void setup (){
@@ -135,7 +166,7 @@ public void mousePressed() {
   if (mouseButton == LEFT) {
     b1.checkClick();
   } else if (mouseButton == RIGHT) {
-    
+    b1.checkFlag();
   }
 }
   static public void main(String[] passedArgs) {
