@@ -8,11 +8,87 @@ public class TheBoard{
 	public TheBoard(){
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
+				buttons[i][a] = new MSButton(i*(25),a*(25), "");
+			}
+		}
+		for(int i = 0; i<buttons.length; i++){
+			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d<.1)
-					buttons[i][a] = new MSButton(i*(25),a*(25), "B");
-				else
-					buttons[i][a] = new MSButton(i*(25),a*(25), "");
+				if(d>.1)
+					continue;
+				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
+
+				try {//1
+					buttons[i-1][a-1].addValue();
+				} catch (Throwable e) { 
+					System.out.println("On border.");
+				}
+
+				try { //2 
+					buttons[i][a-1].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try { //3
+					buttons[i+1][a-1].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try { //4
+					buttons[i+1][a].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try {//5
+					buttons[i+1][a+1].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try { // 6
+					buttons[i][a+1].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try { //7
+					buttons[i-1][a+1].addValue();
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+
+				try { //8
+					buttons[i-1][a].addValue();	
+				} catch (Throwable e) {
+					System.out.println("On border.");
+				}
+				/*if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
+					buttons[i-1][a-1].addValue();
+					buttons[i][a-1].addValue();
+					buttons[i+1][a-1].addValue();
+					buttons[i+1][a].addValue();
+					buttons[i+1][a+1].addValue();
+					buttons[i][a+1].addValue();
+					buttons[i-1][a+1].addValue();
+					buttons[i-1][a].addValue();	
+				} else if(i==0 && a>0 && a<buttons[i].length-1){
+					buttons[i][a+1].addValue();
+					buttons[i][a].addValue();
+					buttons[i][a-1].addValue();
+				} else if(i==0 && a==0){
+					buttons[i][a+1].addValue();
+					buttons[i][a].addValue();
+					buttons[i][a].addValue();
+				} else if(i==0 && a==buttons[i].length-1){
+					buttons[i][a+1].addValue();
+					buttons[i][a].addValue();
+					buttons[i][a].addValue();
+				}*/
+
+
 			}
 		}
 	}
@@ -48,13 +124,14 @@ public class TheBoard{
 }
 
 public class MSButton{
-	int theLength = 25;
-	int x;
-	int y;
-	String theText="";
-	boolean isPressed = false;
-	boolean isFlagged = false;
-	boolean isHover = false;
+	private int x;
+	private int y;
+	private int theLength = 25;
+	private int val = 0;
+	private String theText="";
+	private boolean isPressed = false;
+	private boolean isFlagged = false;
+	private boolean isHover = false;
 	color c = color(224, 224, 224);
 	color str = color(0, 0, 0);
 	//instantiates at x and y
@@ -84,6 +161,12 @@ public class MSButton{
 	//set's button's border color
 	public void setStroke(int r, int g, int b){
 		this.str = color(r, g, b);
+	}
+
+	public void addValue(){
+		val++;
+		if(!theText.equals("B"))
+			theText = Integer.toString(val);
 	}
 
 	//draws button
