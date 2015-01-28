@@ -194,7 +194,7 @@ public class MSButton{
 	public void addValue(){
 		val++;
 		if(!theText.equals("B"))
-			theText = Integer.toString(val);
+			theText = "" + val;
 	}
 
 	//draws button
