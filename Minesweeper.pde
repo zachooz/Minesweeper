@@ -20,50 +20,50 @@ public class TheBoard{
 
 				try {//1
 					buttons[i-1][a-1].addValue();
-				} catch (Throwable e) { 
-					println("On border.");
+				} catch (e) { 
+					System.out.println("On border.");
 				}
 
 				try { //2 
 					buttons[i][a-1].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try { //3
 					buttons[i+1][a-1].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try { //4
 					buttons[i+1][a].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try {//5
 					buttons[i+1][a+1].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try { // 6
 					buttons[i][a+1].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try { //7
 					buttons[i-1][a+1].addValue();
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 
 				try { //8
 					buttons[i-1][a].addValue();	
-				} catch (Throwable e) {
-					println("On border.");
+				} catch (e) {
+					System.out.println("On border.");
 				}
 				/*if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
 					buttons[i-1][a-1].addValue();
