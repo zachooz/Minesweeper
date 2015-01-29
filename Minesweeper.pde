@@ -1,5 +1,6 @@
-TheBoard b1;
-Boolean gameOver = false;
+private TheBoard b1;
+private Boolean gameOver = false;
+private int bombCount = 0;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
@@ -14,10 +15,10 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.1)
+				if(d>.01)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
-				
+				bombCount++;
 				try {//1
 					buttons[i-1][a-1].addValue();
 				} catch (Throwable e) { 
@@ -187,6 +188,7 @@ public class MSButton{
 		isHover = false;
 	}
 
+	//recursive spread to surrounding buttons
 	public void spreadPress(MSButton[][] buttons, int i, int a){
 		if (!isPressed && !isFlagged){
 			isPressed=true;
@@ -235,11 +237,18 @@ public class MSButton{
 			}
 		}
 	}
-	//if button is pressed remove flag and change color
+
+	//if button is pressed remove flag, change color, and start recursive spread
 	public void setPressed(MSButton[][] buttons, int i, int a){
 		if(checkMouse() && !isPressed){
 			isPressed = true;
-			isFlagged=false;
+			if(isFlagged){
+				isFlagged=false;
+				if(theText.equals("B"))
+					bombCount++;
+				else 
+					bombCount--;
+			}
 			setColor(0,0,0);
 			setStroke(25,0,255);
 			if(theText.equals("B")){
@@ -292,8 +301,17 @@ public class MSButton{
 	public void setFlag(){
 		if(checkMouse() && !isPressed && !isFlagged){
 			isFlagged=true;
+			if(theText.equals("B")){
+				bombCount--;
+			} else {
+				bombCount++;
+			}
 		} else if(checkMouse() && !isPressed && isFlagged){
 			isFlagged=false;
+			if(theText.equals("B"))
+				bombCount++;
+			else
+				bombCount--;
 		}
 	}
 }
@@ -309,6 +327,21 @@ void setup (){
 public void draw (){
     background(0);
     b1.drawBoard();
+
+    if(bombCount==0){
+    	gameOver=true;
+    	fill(102,255,102);
+    	stroke(10);
+    	textAlign(CENTER,CENTER);
+    	textSize(80);
+    	text("YOU WIN", width/2,height/2);
+    } else if(gameOver){
+    	fill(255,0,0);
+    	stroke(10);
+    	textAlign(CENTER,CENTER);
+    	textSize(80);
+    	text("YOU LOSE", width/2,height/2);
+    }
 }
 
 void mousePressed() {
