@@ -172,14 +172,6 @@ public class MSButton{
 			setColor(0,0,0);
 			setStroke(25,0,255);
 		}
-
-		//draws text if the button is pressed
-		if(isPressed){
-			fill(255);
-			textSize(15);
-			text(theText,x+12,y+12);
-		}
-
 		//draws flag is the button is flagged
 		if(isFlagged){
 			noStroke();
@@ -187,6 +179,12 @@ public class MSButton{
 			rect(x+7, y+12, 4, 12);
 			fill(165,42,42);
 			rect(x+7, y+6, 12, 8);
+		}
+		//draws text if the button is pressed
+		if(isPressed){
+			fill(255);
+			textSize(15);
+			text(theText,x+12,y+12);
 		}
 	}
 
