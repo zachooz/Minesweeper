@@ -21,49 +21,49 @@ public class TheBoard{
 				try {//1
 					buttons[i-1][a-1].addValue();
 				} catch (Throwable e) { 
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { //2 
 					buttons[i][a-1].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { //3
 					buttons[i+1][a-1].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { //4
 					buttons[i+1][a].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try {//5
 					buttons[i+1][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { // 6
 					buttons[i][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { //7
 					buttons[i-1][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				}
 
 				try { //8
 					buttons[i-1][a].addValue();	
 				} catch (Throwable e) {
-					System.out.println("Out of bounds.");
+					println("Out of bounds.");
 				} /*
 				if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
 					buttons[i-1][a-1].addValue();
@@ -122,9 +122,9 @@ public class TheBoard{
 
 	//called when left mouse button is pressed
 	public void checkClick(){
-		for(MSButton[] array: buttons){
-			for(MSButton c : array){
-				c.setPressed();
+		for(int i = 0; i<buttons.length; i++){
+			for(int a = 0; a<buttons[i].length; a++){
+				buttons[i][a].setPressed(buttons,i,a);
 			}
 		}
 	}
@@ -246,8 +246,68 @@ public class MSButton{
 		isHover = false;
 	}
 
+	public void spreadPress(MSButton[][] buttons, int i, int a){
+		if (!isPressed){
+			isPressed=true;
+			isFlagged=false;
+			setColor(0,0,0);
+			setStroke(25,0,255);
+			if(theText.equals("")){
+				if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
+					buttons[i-1][a-1].spreadPress(buttons, i-1, a-1);
+					buttons[i][a-1].spreadPress(buttons, i, a-1);
+					buttons[i+1][a-1].spreadPress(buttons, i+1, a-1);
+					buttons[i+1][a].spreadPress(buttons, i+1, a);
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				} else if(i==0 && a>0 && a<buttons[i].length-1){
+					buttons[i][a-1].spreadPress(buttons, i, a--);
+					buttons[i+1][a-1].spreadPress(buttons,i++,a--);
+					buttons[i+1][a].spreadPress(buttons,i++,a);
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+				} else if(i==buttons.length-1 && a>0 && a<buttons[i].length-1){
+					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
+					buttons[i][a-1].spreadPress(buttons, i, a--);
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				} else if(a==0 && i>0 && i<buttons.length-1){
+					buttons[i+1][a].spreadPress(buttons, i++, a);
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i][a+1].spreadPress(buttons, i , a++);
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				} else if(a==buttons[i].length-1 && i>0 && i<buttons.length-1){
+					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
+					buttons[i][a-1].spreadPress(buttons, i, a--);
+					buttons[i+1][a-1].spreadPress(buttons, i++, a--);
+					buttons[i+1][a].spreadPress(buttons, i++, a);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				} else if(i==0 && a==0){
+					buttons[i+1][a].spreadPress(buttons, i++, a);
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+				} else if(i==0 && a==buttons[i].length-1){
+					buttons[i][a-1].spreadPress(buttons, i, a--);
+					buttons[i+1][a-1].spreadPress(buttons, i++, a--);
+					buttons[i+1][a].spreadPress(buttons, i++, a);
+				} else if(i==buttons.length-1 && a == 0){
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				} else if(i==buttons.length-1 && a == buttons[i].length-1){
+					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
+					buttons[i][a-1].spreadPress(buttons, i, a--);
+					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				}
+			}
+		}
+	}
 	//if button is pressed remove flag and change color
-	public void setPressed(){
+	public void setPressed(MSButton[][] buttons, int i, int a){
 		if(checkMouse() && !isPressed){
 			isPressed = true;
 			isFlagged=false;
@@ -255,6 +315,54 @@ public class MSButton{
 			setStroke(25,0,255);
 			if(theText.equals("B")){
 				gameOver=true;
+			} else if (theText.equals("")){/*
+				try {//1
+					buttons[i-1][a-1].spreadPress();
+				} catch (Throwable e) { 
+					println("Out of bounds.");
+				}
+
+				try { //2 
+					buttons[i][a-1].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try { //3
+					buttons[i+1][a-1].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try { //4
+					buttons[i+1][a].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try {//5
+					buttons[i+1][a+1].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try { // 6
+					buttons[i][a+1].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try { //7
+					buttons[i-1][a+1].spreadPress();
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				}
+
+				try { //8
+					buttons[i-1][a].spreadPress();	
+				} catch (Throwable e) {
+					println("Out of bounds.");
+				} */
 			}
 		}
 	}
