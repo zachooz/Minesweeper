@@ -15,7 +15,7 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.5)
+				if(d>.1)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
 				bombCount++;
