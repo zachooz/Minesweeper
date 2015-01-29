@@ -14,7 +14,7 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.05)
+				if(d>.1)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
 				
@@ -192,48 +192,47 @@ public class MSButton{
 			isPressed=true;
 			setColor(0,0,0);
 			setStroke(25,0,255);
-			//if(theText.equals("")){
+			if(theText.equals("")){
 				try {//1
-					buttons[i-1][a-1].spreadPress(buttons, i--,a--);
+					buttons[i-1][a-1].spreadPress(buttons, i-1,a-1);
 				} catch (Throwable e) { 
 				}
 
 				try { //2 
-					buttons[i][a-1].spreadPress(buttons, i,a--);
+					buttons[i][a-1].spreadPress(buttons, i,a-1);
 				} catch (Throwable e) {
 				}
 
 				try { //3
-					buttons[i+1][a-1].spreadPress(buttons, i++,a--);
+					buttons[i+1][a-1].spreadPress(buttons, i+1,a-1);
 				} catch (Throwable e) {
 				}
 
 				try { //4
-					buttons[i+1][a].spreadPress(buttons, i++, a);
+					buttons[i+1][a].spreadPress(buttons, i+1, a);
 				} catch (Throwable e) {
 				}
 
 				try {//5
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i+1][a+1].spreadPress(buttons, i+1, a+1);
 				} catch (Throwable e) {
 				}
 
 				try { // 6
-					buttons[i][a+1].spreadPress(buttons, i, a++);
+					buttons[i][a+1].spreadPress(buttons, i, a+1);
 				} catch (Throwable e) {
 				}
 
 				try { //7
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a+1].spreadPress(buttons, i-1, a+1);
 				} catch (Throwable e) {
 				}
 
 				try { //8
-					buttons[i-1][a].spreadPress(buttons, i--,a);	
+					buttons[i-1][a].spreadPress(buttons, i-1,a);	
 				} catch (Throwable e) {
 				} 
-				print("Done");
-			//}
+			}
 		}
 	}
 	//if button is pressed remove flag and change color
@@ -247,50 +246,44 @@ public class MSButton{
 				gameOver=true;
 			} else if (theText.equals("")){
 				try {//1
-					print("1");
-					buttons[i-1][a-1].spreadPress(buttons, i--,a--);
+					buttons[i-1][a-1].spreadPress(buttons, i-1,a-1);
 				} catch (Throwable e) { 
 				}
 
 				try { //2 
-					print("2");
-					buttons[i][a-1].spreadPress(buttons, i,a--);
+					buttons[i][a-1].spreadPress(buttons, i,a-1);
 				} catch (Throwable e) {
 				}
 
 				try { //3
-					print("3");
-					buttons[i+1][a-1].spreadPress(buttons, i++,a--);
+					buttons[i+1][a-1].spreadPress(buttons, i+1,a-1);
 				} catch (Throwable e) {
 				}
 
 				try { //4
-					print("4");
-					buttons[i+1][a].spreadPress(buttons, i++, a);
+					buttons[i+1][a].spreadPress(buttons, i+1, a);
 				} catch (Throwable e) {
 				}
+
 				try {//5
-					print("5");
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+					buttons[i+1][a+1].spreadPress(buttons, i+1, a+1);
 				} catch (Throwable e) {
 				}
+
 				try { // 6
-					print("6");
-					buttons[i][a+1].spreadPress(buttons, i, a++);
+					buttons[i][a+1].spreadPress(buttons, i, a+1);
 				} catch (Throwable e) {
 				}
 
 				try { //7
-					print("7");
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+					buttons[i-1][a+1].spreadPress(buttons, i-1, a+1);
 				} catch (Throwable e) {
 				}
 
 				try { //8
-					print("8");
-					buttons[i-1][a].spreadPress(buttons, i--,a);	
+					buttons[i-1][a].spreadPress(buttons, i-1,a);	
 				} catch (Throwable e) {
-				}
+				} 
 			}
 		}
 	}
