@@ -30,108 +30,49 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.1f)
+				if(d>.05f)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
 				
 				try {//1
 					buttons[i-1][a-1].addValue();
 				} catch (Throwable e) { 
-					println("Out of bounds.");
 				}
 
 				try { //2 
 					buttons[i][a-1].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //3
 					buttons[i+1][a-1].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //4
 					buttons[i+1][a].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try {//5
 					buttons[i+1][a+1].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { // 6
 					buttons[i][a+1].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //7
 					buttons[i-1][a+1].addValue();
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //8
 					buttons[i-1][a].addValue();	
 				} catch (Throwable e) {
-					println("Out of bounds.");
-				} /*
-				if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
-					buttons[i-1][a-1].addValue();
-					buttons[i][a-1].addValue();
-					buttons[i+1][a-1].addValue();
-					buttons[i+1][a].addValue();
-					buttons[i+1][a+1].addValue();
-					buttons[i][a+1].addValue();
-					buttons[i-1][a+1].addValue();
-					buttons[i-1][a].addValue();	
-				} else if(i==0 && a>0 && a<buttons[i].length-1){
-					buttons[i][a-1].addValue();
-					buttons[i+1][a-1].addValue();
-					buttons[i+1][a].addValue();
-					buttons[i+1][a+1].addValue();
-					buttons[i][a+1].addValue();
-				} else if(i==buttons.length-1 && a>0 && a<buttons[i].length-1){
-					buttons[i-1][a-1].addValue();
-					buttons[i][a-1].addValue();
-					buttons[i][a+1].addValue();
-					buttons[i-1][a+1].addValue();
-					buttons[i-1][a].addValue();	
-				} else if(a==0 && i>0 && i<buttons.length-1){
-					buttons[i+1][a].addValue();
-					buttons[i+1][a+1].addValue();
-					buttons[i][a+1].addValue();
-					buttons[i-1][a+1].addValue();
-					buttons[i-1][a].addValue();	
-				} else if(a==buttons[i].length-1 && i>0 && i<buttons.length-1){
-					buttons[i-1][a-1].addValue();
-					buttons[i][a-1].addValue();
-					buttons[i+1][a-1].addValue();
-					buttons[i+1][a].addValue();
-					buttons[i-1][a].addValue();	
-				} else if(i==0 && a==0){
-					buttons[i+1][a].addValue();
-					buttons[i+1][a+1].addValue();
-					buttons[i][a+1].addValue();
-				} else if(i==0 && a==buttons[i].length-1){
-					buttons[i][a-1].addValue();
-					buttons[i+1][a-1].addValue();
-					buttons[i+1][a].addValue();
-				} else if(i==buttons.length-1 && a == 0){
-					buttons[i][a+1].addValue();
-					buttons[i-1][a+1].addValue();
-					buttons[i-1][a].addValue();	
-				} else if(i==buttons.length-1 && a == buttons[i].length-1){
-					buttons[i-1][a-1].addValue();
-					buttons[i][a-1].addValue();;
-					buttons[i-1][a].addValue();	
-				}*/
-
+				}
 			}
 		}
 	}
@@ -269,56 +210,47 @@ public class MSButton{
 			setColor(0,0,0);
 			setStroke(25,0,255);
 			if(theText.equals("")){
-				if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
-					buttons[i-1][a-1].spreadPress(buttons, i-1, a-1);
-					buttons[i][a-1].spreadPress(buttons, i, a-1);
-					buttons[i+1][a-1].spreadPress(buttons, i+1, a-1);
-					buttons[i+1][a].spreadPress(buttons, i+1, a);
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
-					buttons[i][a+1].spreadPress(buttons, i, a++);
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
-				} else if(i==0 && a>0 && a<buttons[i].length-1){
-					buttons[i][a-1].spreadPress(buttons, i, a--);
-					buttons[i+1][a-1].spreadPress(buttons,i++,a--);
-					buttons[i+1][a].spreadPress(buttons,i++,a);
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
-					buttons[i][a+1].spreadPress(buttons, i, a++);
-				} else if(i==buttons.length-1 && a>0 && a<buttons[i].length-1){
-					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
-					buttons[i][a-1].spreadPress(buttons, i, a--);
-					buttons[i][a+1].spreadPress(buttons, i, a++);
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
-				} else if(a==0 && i>0 && i<buttons.length-1){
-					buttons[i+1][a].spreadPress(buttons, i++, a);
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
-					buttons[i][a+1].spreadPress(buttons, i , a++);
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
-				} else if(a==buttons[i].length-1 && i>0 && i<buttons.length-1){
-					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
-					buttons[i][a-1].spreadPress(buttons, i, a--);
-					buttons[i+1][a-1].spreadPress(buttons, i++, a--);
-					buttons[i+1][a].spreadPress(buttons, i++, a);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
-				} else if(i==0 && a==0){
-					buttons[i+1][a].spreadPress(buttons, i++, a);
-					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
-					buttons[i][a+1].spreadPress(buttons, i, a++);
-				} else if(i==0 && a==buttons[i].length-1){
-					buttons[i][a-1].spreadPress(buttons, i, a--);
-					buttons[i+1][a-1].spreadPress(buttons, i++, a--);
-					buttons[i+1][a].spreadPress(buttons, i++, a);
-				} else if(i==buttons.length-1 && a == 0){
-					buttons[i][a+1].spreadPress(buttons, i, a++);
-					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
-				} else if(i==buttons.length-1 && a == buttons[i].length-1){
-					buttons[i-1][a-1].spreadPress(buttons, i--, a--);
-					buttons[i][a-1].spreadPress(buttons, i, a--);
-					buttons[i-1][a].spreadPress(buttons, i--, a);	
+				try {//1
+					buttons[i-1][a-1].spreadPress(buttons, i--,a--);
+				} catch (Throwable e) { 
 				}
+
+				try { //2 
+					buttons[i][a-1].spreadPress(buttons, i,a--);
+				} catch (Throwable e) {
+				}
+
+				try { //3
+					buttons[i+1][a-1].spreadPress(buttons, i++,a--);
+				} catch (Throwable e) {
+				}
+
+				try { //4
+					buttons[i+1][a].spreadPress(buttons, i++, a);
+				} catch (Throwable e) {
+				}
+
+				try {//5
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
+				} catch (Throwable e) {
+				}
+
+				try { // 6
+					buttons[i][a+1].spreadPress(buttons, i, a++);
+				} catch (Throwable e) {
+				}
+
+				try { //7
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
+				} catch (Throwable e) {
+				}
+
+				try { //8
+					buttons[i-1][a].spreadPress(buttons, i--,a);	
+				} catch (Throwable e) {
+				} 
+			} else {
+				System.out.println(theText);
 			}
 		}
 	}
@@ -331,54 +263,46 @@ public class MSButton{
 			setStroke(25,0,255);
 			if(theText.equals("B")){
 				gameOver=true;
-			} else if (theText.equals("")){/*
+			} else if (theText.equals("")){
 				try {//1
-					buttons[i-1][a-1].spreadPress();
+					buttons[i-1][a-1].spreadPress(buttons, i--,a--);
 				} catch (Throwable e) { 
-					println("Out of bounds.");
 				}
 
 				try { //2 
-					buttons[i][a-1].spreadPress();
+					buttons[i][a-1].spreadPress(buttons, i,a--);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //3
-					buttons[i+1][a-1].spreadPress();
+					buttons[i+1][a-1].spreadPress(buttons, i++,a--);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //4
-					buttons[i+1][a].spreadPress();
+					buttons[i+1][a].spreadPress(buttons, i++, a);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try {//5
-					buttons[i+1][a+1].spreadPress();
+					buttons[i+1][a+1].spreadPress(buttons, i++, a++);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { // 6
-					buttons[i][a+1].spreadPress();
+					buttons[i][a+1].spreadPress(buttons, i, a++);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //7
-					buttons[i-1][a+1].spreadPress();
+					buttons[i-1][a+1].spreadPress(buttons, i--, a++);
 				} catch (Throwable e) {
-					println("Out of bounds.");
 				}
 
 				try { //8
-					buttons[i-1][a].spreadPress();	
+					buttons[i-1][a].spreadPress(buttons, i--,a);	
 				} catch (Throwable e) {
-					println("Out of bounds.");
-				} */
+				} 
 			}
 		}
 	}
@@ -398,7 +322,6 @@ public void setup (){
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
-    System.out.println("HEY");
 }
 
 
