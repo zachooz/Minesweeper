@@ -240,15 +240,8 @@ public class MSButton{
 
 	//if button is pressed remove flag, change color, and start recursive spread
 	public void setPressed(MSButton[][] buttons, int i, int a){
-		if(checkMouse() && !isPressed){
+		if(checkMouse() && !isPressed && !isFlagged){
 			isPressed = true;
-			if(isFlagged){
-				isFlagged=false;
-				if(theText.equals("B"))
-					bombCount++;
-				else 
-					bombCount--;
-			}
 			setColor(0,0,0);
 			setStroke(25,0,255);
 			if(theText.equals("B")){
@@ -335,21 +328,34 @@ public void draw (){
     	textAlign(CENTER,CENTER);
     	textSize(80);
     	text("YOU WIN", width/2,height/2);
+    	textSize(20);
+    	text("click to restart", width/2,height/2+height/6);
     } else if(gameOver){
     	fill(255,0,0);
     	stroke(10);
     	textAlign(CENTER,CENTER);
     	textSize(80);
     	text("YOU LOSE", width/2,height/2);
+    	textSize(20);
+    	text("click to restart", width/2,height/2+height/6);
     }
 }
 
 void mousePressed() {
   if (mouseButton == LEFT) {
-  	if(!gameOver)
+  	if(!gameOver){
     	b1.checkClick();
+  	}else{
+    	b1=new TheBoard(); 
+    	gameOver=false;
+    }
+
   } else if (mouseButton == RIGHT) {
-  	if(!gameOver)
+  	if(!gameOver){
     	b1.checkFlag();
+	}else{
+    	b1=new TheBoard(); 
+    	gameOver=false;
+    }
   }
 }
