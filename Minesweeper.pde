@@ -17,54 +17,54 @@ public class TheBoard{
 				if(d>.1)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
-				/* PROCESSING.JS MUST GET ITS ACT TOGETHER AND INTEGRATE ERROR HANDLING
+				
 				try {//1
 					buttons[i-1][a-1].addValue();
 				} catch (Throwable e) { 
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { //2 
 					buttons[i][a-1].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { //3
 					buttons[i+1][a-1].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { //4
 					buttons[i+1][a].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try {//5
 					buttons[i+1][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { // 6
 					buttons[i][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { //7
 					buttons[i-1][a+1].addValue();
 				} catch (Throwable e) {
-					System.out.println("On border.");
+					System.out.println("Out of bounds.");
 				}
 
 				try { //8
 					buttons[i-1][a].addValue();	
 				} catch (Throwable e) {
-					System.out.println("On border.");
-				} */
+					System.out.println("Out of bounds.");
+				} /*
 				if(i>0 && a>0 && i<buttons.length-1 && a<buttons[i].length-1){
 					buttons[i-1][a-1].addValue();
 					buttons[i][a-1].addValue();
@@ -95,8 +95,8 @@ public class TheBoard{
 				} else if(a==buttons[i].length-1 && i>0 && i<buttons.length-1){
 					buttons[i-1][a-1].addValue();
 					buttons[i][a-1].addValue();
-					buttons[i][a+1].addValue();
-					buttons[i-1][a+1].addValue();
+					buttons[i+1][a-1].addValue();
+					buttons[i+1][a].addValue();
 					buttons[i-1][a].addValue();	
 				} else if(i==0 && a==0){
 					buttons[i+1][a].addValue();
@@ -114,8 +114,7 @@ public class TheBoard{
 					buttons[i-1][a-1].addValue();
 					buttons[i][a-1].addValue();;
 					buttons[i-1][a].addValue();	
-				}
-
+				}*/
 
 			}
 		}
