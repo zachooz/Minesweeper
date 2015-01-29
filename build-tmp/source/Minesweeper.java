@@ -398,6 +398,7 @@ public void setup (){
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
+    System.out.println("HEY");
 }
 
 
