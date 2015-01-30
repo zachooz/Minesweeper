@@ -31,7 +31,7 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.01f)
+				if(d>.1f)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
 				bombCount++;
@@ -320,7 +320,7 @@ public class MSButton{
 			else
 				bombCount--;
 		}
-		System.out.println(bombCount);
+		println(bombCount);
 	}
 }
 

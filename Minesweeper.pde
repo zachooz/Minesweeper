@@ -304,7 +304,7 @@ public class MSButton{
 			else
 				bombCount--;
 		}
-		System.out.println(bombCount);
+		println(bombCount);
 	}
 }
 
