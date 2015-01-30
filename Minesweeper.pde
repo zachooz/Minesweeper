@@ -304,7 +304,6 @@ public class MSButton{
 			else
 				bombCount--;
 		}
-		println(bombCount);
 	}
 }
 
