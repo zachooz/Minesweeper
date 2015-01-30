@@ -31,7 +31,7 @@ public class TheBoard{
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				double d = Math.random();
-				if(d>.1f)
+				if(d>.01f)
 					continue;
 				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
 				bombCount++;
@@ -320,6 +320,7 @@ public class MSButton{
 			else
 				bombCount--;
 		}
+		System.out.println(bombCount);
 	}
 }
 
@@ -355,7 +356,7 @@ public void draw (){
     }
 }
 
-public void mousePressed() {
+public void mouseClicked() {
   if (mouseButton == LEFT) {
   	if(!gameOver){
     	b1.checkClick();
