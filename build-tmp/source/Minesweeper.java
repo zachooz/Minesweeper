@@ -23,6 +23,7 @@ public class TheBoard{
 
 	//initialize the board
 	public TheBoard(){
+		bombCount=0;
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
 				buttons[i][a] = new MSButton(i*(25),a*(25), "");
@@ -320,7 +321,7 @@ public class MSButton{
 			else
 				bombCount--;
 		}
-		println(bombCount);
+		System.out.println(bombCount);
 	}
 }
 
@@ -329,6 +330,7 @@ public void setup (){
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
+    System.out.println(bombCount);
 }
 
 
