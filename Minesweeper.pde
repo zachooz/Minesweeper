@@ -305,7 +305,6 @@ public class MSButton{
 			else
 				bombCount--;
 		}
-		System.out.println(bombCount);
 	}
 }
 
@@ -314,7 +313,6 @@ void setup (){
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
-    System.out.println(bombCount);
 }
 
 
