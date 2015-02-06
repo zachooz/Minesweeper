@@ -17,7 +17,7 @@ public class Minesweeper extends PApplet {
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
-public static final int BOMBAMOUNT = 33;
+public static final int BOMBAMOUNT = 40;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
@@ -35,7 +35,6 @@ public class TheBoard{
 			int c = (int) (Math.random()*buttons.length);
 			if(buttons[r][c].getValue().equals("B")){
 				i--;
-				System.out.println(r + " " + c);
 				continue;
 			}
 			buttons[r][c] = new MSButton(r*25,c*25, "B");

@@ -1,7 +1,7 @@
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
-public static final int BOMBAMOUNT = 33;
+public static final int BOMBAMOUNT = 40;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
