@@ -19,7 +19,6 @@ public class TheBoard{
 			int c = (int) (Math.random()*buttons.length);
 			if(buttons[r][c].getValue().equals("B")){
 				i--;
-				System.out.println(r + " " + c);
 				continue;
 			}
 			buttons[r][c] = new MSButton(r*25,c*25, "B");
