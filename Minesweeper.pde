@@ -1,6 +1,7 @@
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
+public static final int BOMBAMOUNT = 33;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
@@ -13,53 +14,56 @@ public class TheBoard{
 				buttons[i][a] = new MSButton(i*(25),a*(25), "");
 			}
 		}
-		for(int i = 0; i<buttons.length; i++){
-			for(int a = 0; a<buttons[i].length; a++){
-				double d = Math.random();
-				if(d>.1)
-					continue;
-				buttons[i][a] = new MSButton(i*(25),a*(25), "B");
-				bombCount++;
-				try {//1
-					buttons[i-1][a-1].addValue();
-				} catch (Throwable e) { 
-				}
-
-				try { //2 
-					buttons[i][a-1].addValue();
-				} catch (Throwable e) {
-				}
-
-				try { //3
-					buttons[i+1][a-1].addValue();
-				} catch (Throwable e) {
-				}
-
-				try { //4
-					buttons[i+1][a].addValue();
-				} catch (Throwable e) {
-				}
-
-				try {//5
-					buttons[i+1][a+1].addValue();
-				} catch (Throwable e) {
-				}
-
-				try { // 6
-					buttons[i][a+1].addValue();
-				} catch (Throwable e) {
-				}
-
-				try { //7
-					buttons[i-1][a+1].addValue();
-				} catch (Throwable e) {
-				}
-
-				try { //8
-					buttons[i-1][a].addValue();	
-				} catch (Throwable e) {
-				}
+		for(int i = 0; i<BOMBAMOUNT; i++){
+			int r = (int) (Math.random()*buttons.length);
+			int c = (int) (Math.random()*buttons.length);
+			if(buttons[r][c].getValue().equals("B")){
+				i--;
+				System.out.println(r + " " + c);
+				continue;
 			}
+			buttons[r][c] = new MSButton(r*25,c*25, "B");
+			bombCount++;
+			try {//1
+				buttons[r-1][c-1].addValue();
+			} catch (Throwable e) { 
+			}
+
+			try { //2 
+				buttons[r][c-1].addValue();
+			} catch (Throwable e) {
+			}
+
+			try { //3
+				buttons[r+1][c-1].addValue();
+			} catch (Throwable e) {
+			}
+
+			try { //4
+				buttons[r+1][c].addValue();
+			} catch (Throwable e) {
+			}
+
+			try {//5
+				buttons[r+1][c+1].addValue();
+			} catch (Throwable e) {
+			}
+
+			try { // 6
+				buttons[r][c+1].addValue();
+			} catch (Throwable e) {
+			}
+
+			try { //7
+				buttons[r-1][c+1].addValue();
+			} catch (Throwable e) {
+			}
+
+			try { //8
+				buttons[r-1][c].addValue();	
+			} catch (Throwable e) {
+			}
+			
 		}
 	}
 
@@ -305,6 +309,10 @@ public class MSButton{
 			else
 				bombCount--;
 		}
+	}
+
+	public String getValue(){
+		return theText;
 	}
 }
 
