@@ -23,46 +23,14 @@ public class TheBoard{
 			}
 			buttons[r][c] = new MSButton(r*25,c*25, "B");
 			bombCount++;
-			try {//1
-				buttons[r-1][c-1].addValue();
-			} catch (Throwable e) { 
-			}
-
-			try { //2 
-				buttons[r][c-1].addValue();
-			} catch (Throwable e) {
-			}
-
-			try { //3
-				buttons[r+1][c-1].addValue();
-			} catch (Throwable e) {
-			}
-
-			try { //4
-				buttons[r+1][c].addValue();
-			} catch (Throwable e) {
-			}
-
-			try {//5
-				buttons[r+1][c+1].addValue();
-			} catch (Throwable e) {
-			}
-
-			try { // 6
-				buttons[r][c+1].addValue();
-			} catch (Throwable e) {
-			}
-
-			try { //7
-				buttons[r-1][c+1].addValue();
-			} catch (Throwable e) {
-			}
-
-			try { //8
-				buttons[r-1][c].addValue();	
-			} catch (Throwable e) {
-			}
-			
+			for(int a=-1; a<=1; a++){
+				for(int b=-1; b<=1; b++){
+					try {//1
+						buttons[r+a][c+b].addValue();
+					} catch (Throwable e) { 
+					}
+				}
+			}			
 		}
 	}
 
@@ -197,45 +165,14 @@ public class MSButton{
 			setColor(0,0,0);
 			setStroke(25,0,255);
 			if(theText.equals("")){
-				try {//1
-					buttons[i-1][a-1].spreadPress(buttons, i-1,a-1);
-				} catch (Throwable e) { 
+				for(int g=-1; g<=1; g++){
+					for(int b=-1; b<=1; b++){
+						try {//1
+							buttons[i+g][a+b].spreadPress(buttons, i+g,a+b);
+						} catch (Throwable e) { 
+						}
+					}
 				}
-
-				try { //2 
-					buttons[i][a-1].spreadPress(buttons, i,a-1);
-				} catch (Throwable e) {
-				}
-
-				try { //3
-					buttons[i+1][a-1].spreadPress(buttons, i+1,a-1);
-				} catch (Throwable e) {
-				}
-
-				try { //4
-					buttons[i+1][a].spreadPress(buttons, i+1, a);
-				} catch (Throwable e) {
-				}
-
-				try {//5
-					buttons[i+1][a+1].spreadPress(buttons, i+1, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { // 6
-					buttons[i][a+1].spreadPress(buttons, i, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { //7
-					buttons[i-1][a+1].spreadPress(buttons, i-1, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { //8
-					buttons[i-1][a].spreadPress(buttons, i-1,a);	
-				} catch (Throwable e) {
-				} 
 			}
 		}
 	}
@@ -249,45 +186,14 @@ public class MSButton{
 			if(theText.equals("B")){
 				gameOver=true;
 			} else if (theText.equals("")){
-				try {//1
-					buttons[i-1][a-1].spreadPress(buttons, i-1,a-1);
-				} catch (Throwable e) { 
+				for(int g=-1; g<=1; g++){
+					for(int b=-1; b<=1; b++){
+						try {//1
+							buttons[i+g][a+b].spreadPress(buttons, i+g,a+b);
+						} catch (Throwable e) { 
+						}
+					}
 				}
-
-				try { //2 
-					buttons[i][a-1].spreadPress(buttons, i,a-1);
-				} catch (Throwable e) {
-				}
-
-				try { //3
-					buttons[i+1][a-1].spreadPress(buttons, i+1,a-1);
-				} catch (Throwable e) {
-				}
-
-				try { //4
-					buttons[i+1][a].spreadPress(buttons, i+1, a);
-				} catch (Throwable e) {
-				}
-
-				try {//5
-					buttons[i+1][a+1].spreadPress(buttons, i+1, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { // 6
-					buttons[i][a+1].spreadPress(buttons, i, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { //7
-					buttons[i-1][a+1].spreadPress(buttons, i-1, a+1);
-				} catch (Throwable e) {
-				}
-
-				try { //8
-					buttons[i-1][a].spreadPress(buttons, i-1,a);	
-				} catch (Throwable e) {
-				} 
 			}
 		}
 	}
