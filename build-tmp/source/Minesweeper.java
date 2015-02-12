@@ -18,12 +18,22 @@ private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
 public static final int BOMBAMOUNT = 40;
+private boolean firstClick = true;
 //Creates the game boeard
 public class TheBoard{
 	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
 
 	//initialize the board
 	public TheBoard(){
+		bombCount=1;
+		for(int i = 0; i<buttons.length; i++){
+			for(int a = 0; a<buttons[i].length; a++){
+				buttons[i][a] = new MSButton(i*(25),a*(25), "");
+			}
+		}
+	}
+
+	public void genBoard(){
 		bombCount=0;
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
@@ -33,7 +43,7 @@ public class TheBoard{
 		for(int i = 0; i<BOMBAMOUNT; i++){
 			int r = (int) (Math.random()*buttons.length);
 			int c = (int) (Math.random()*buttons.length);
-			if(buttons[r][c].getValue().equals("B")){
+			if(buttons[r][c].getValue().equals("B") || buttons[r][c].checkMouse()){
 				i--;
 				continue;
 			}
@@ -49,7 +59,6 @@ public class TheBoard{
 			}			
 		}
 	}
-
 	//called when left mouse button is pressed
 	public void checkClick(){
 		for(int i = 0; i<buttons.length; i++){
@@ -276,6 +285,12 @@ public void mouseClicked() {
   	}else{
     	b1=new TheBoard(); 
     	gameOver=false;
+    	firstClick=true;
+    }
+
+    if(firstClick){
+    	firstClick=false;
+    	b1.genBoard();
     }
 
   } else if (mouseButton == RIGHT) {
@@ -284,6 +299,12 @@ public void mouseClicked() {
 	}else{
     	b1=new TheBoard(); 
     	gameOver=false;
+    	firstClick=true;
+    }
+
+    if(firstClick){
+    	firstClick=false;
+    	b1.genBoard();
     }
   }
 }
