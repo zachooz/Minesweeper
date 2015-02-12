@@ -92,7 +92,7 @@ public class MSButton{
 	}
 
 	//checks if mouse is on button
-	private boolean checkMouse(){
+	public boolean checkMouse(){
 		if(mouseX>x && mouseY>y && mouseX<x+theLength && mouseY<y+theLength)
 			return true;
 		return false;
