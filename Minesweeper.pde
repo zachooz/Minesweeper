@@ -1,7 +1,7 @@
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
-public static final int BOMBAMOUNT = 40;
+public static final int BOMBAMOUNT = 50;
 private boolean firstClick = true;
 //Creates the game boeard
 public class TheBoard{
@@ -27,7 +27,7 @@ public class TheBoard{
 		for(int i = 0; i<BOMBAMOUNT; i++){
 			int r = (int) (Math.random()*buttons.length);
 			int c = (int) (Math.random()*buttons.length);
-			if(buttons[r][c].getValue().equals("B") || buttons[r][c].checkMouse()){
+			if(buttons[r][c].getValue().equals("B") || buttons[r][c].checkGen()){
 				i--;
 				continue;
 			}
@@ -97,6 +97,13 @@ public class MSButton{
 			return true;
 		return false;
 	}
+
+	public boolean checkGen(){
+		if(mouseX>(x-theLength) && mouseY>(y-theLength) && mouseX<(x+2*theLength) && mouseY<(y+2*theLength))
+			return true;
+		return false;
+	}
+
 
 	//sets button's text
 	public void setText(String theText){
