@@ -264,6 +264,11 @@ public void draw (){
 
 void mouseClicked() {
   if (mouseButton == LEFT) {
+    if(firstClick){
+    	firstClick=false;
+    	b1.genBoard();
+    }
+
   	if(!gameOver){
     	b1.checkClick();
   	}else{
@@ -272,12 +277,12 @@ void mouseClicked() {
     	firstClick=true;
     }
 
+  } else if (mouseButton == RIGHT) {
     if(firstClick){
     	firstClick=false;
     	b1.genBoard();
     }
 
-  } else if (mouseButton == RIGHT) {
   	if(!gameOver){
     	b1.checkFlag();
 	}else{
@@ -286,9 +291,5 @@ void mouseClicked() {
     	firstClick=true;
     }
 
-    if(firstClick){
-    	firstClick=false;
-    	b1.genBoard();
-    }
   }
 }

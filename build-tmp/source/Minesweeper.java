@@ -108,7 +108,7 @@ public class MSButton{
 	}
 
 	//checks if mouse is on button
-	private boolean checkMouse(){
+	public boolean checkMouse(){
 		if(mouseX>x && mouseY>y && mouseX<x+theLength && mouseY<y+theLength)
 			return true;
 		return false;
@@ -280,6 +280,11 @@ public void draw (){
 
 public void mouseClicked() {
   if (mouseButton == LEFT) {
+    if(firstClick){
+    	firstClick=false;
+    	b1.genBoard();
+    }
+
   	if(!gameOver){
     	b1.checkClick();
   	}else{
@@ -288,12 +293,12 @@ public void mouseClicked() {
     	firstClick=true;
     }
 
+  } else if (mouseButton == RIGHT) {
     if(firstClick){
     	firstClick=false;
     	b1.genBoard();
     }
 
-  } else if (mouseButton == RIGHT) {
   	if(!gameOver){
     	b1.checkFlag();
 	}else{
@@ -302,10 +307,6 @@ public void mouseClicked() {
     	firstClick=true;
     }
 
-    if(firstClick){
-    	firstClick=false;
-    	b1.genBoard();
-    }
   }
 }
   static public void main(String[] passedArgs) {
