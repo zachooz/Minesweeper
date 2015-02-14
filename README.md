@@ -1,6 +1,6 @@
 Minesweeper
 ==================
-The classic minesweeper with a pre-generated board.
+The classic minesweeper.
 
 Controls
 --------------------------------
