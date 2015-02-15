@@ -131,7 +131,7 @@ public class MSButton{
 		//draws rect
 		stroke(1);
 		if(!isPressed && !isHover){
-			setColor(224,224,224);
+			setColor(255,255,255);
 			setStroke(0,0,0);
 		}
 
@@ -164,7 +164,7 @@ public class MSButton{
 	public void checkHover(){
 		if(checkMouse() && !isPressed){
 			isHover = true;
-			setColor(135,135,135);
+			setColor(20,20,20);
 			setStroke(200,200,200);
 		}
 	}
