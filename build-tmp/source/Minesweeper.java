@@ -180,7 +180,7 @@ public class MSButton{
 	public void checkHover(){
 		if(checkMouse() && !isPressed){
 			isHover = true;
-			setColor(20,20,20);
+			setColor(200,200,200);
 			setStroke(200,200,200);
 		}
 	}
