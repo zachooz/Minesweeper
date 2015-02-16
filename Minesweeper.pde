@@ -1,18 +1,18 @@
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
-public static final int BOMBAMOUNT = 50;
+public static final int BOMBAMOUNT = 1000;
 private boolean firstClick = true;
 //Creates the game boeard
 public class TheBoard{
-	private MSButton[][] buttons = new MSButton[20][20]; //2d array of minesweeper buttons
+	private MSButton[][] buttons = new MSButton[100][100]; //2d array of minesweeper buttons
 
 	//initialize the board
 	public TheBoard(){
 		bombCount=1;
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
-				buttons[i][a] = new MSButton(i*(25),a*(25), "");
+				buttons[i][a] = new MSButton(i*(MSButton.theLength),a*(MSButton.theLength), "");
 			}
 		}
 	}
@@ -21,7 +21,7 @@ public class TheBoard{
 		bombCount=0;
 		for(int i = 0; i<buttons.length; i++){
 			for(int a = 0; a<buttons[i].length; a++){
-				buttons[i][a] = new MSButton(i*(25),a*(25), "");
+				buttons[i][a] = new MSButton(i*(MSButton.theLength),a*(MSButton.theLength), "");
 			}
 		}
 		for(int i = 0; i<BOMBAMOUNT; i++){
@@ -31,7 +31,7 @@ public class TheBoard{
 				i--;
 				continue;
 			}
-			buttons[r][c] = new MSButton(r*25,c*25, "B");
+			buttons[r][c] = new MSButton(r*MSButton.theLength,c*MSButton.theLength, "B");
 			bombCount++;
 			for(int a=-1; a<=1; a++){
 				for(int b=-1; b<=1; b++){
@@ -76,7 +76,7 @@ public class TheBoard{
 public class MSButton{
 	private int x;
 	private int y;
-	private int theLength = 25;
+	public static final int theLength = 9;
 	private int val = 0;
 	private String theText="";
 	private boolean isPressed = false;
@@ -148,15 +148,15 @@ public class MSButton{
 		if(isFlagged){
 			noStroke();
 			fill(139,69,19);
-			rect(x+7, y+12, 4, 12);
+			rect(x+theLength/3.5, y+theLength/2, theLength/6.25, theLength/2);
 			fill(165,42,42);
-			rect(x+7, y+6, 12, 8);
+			rect(x+theLength/3.5, y+theLength/3.5, theLength/2, theLength/3.1);
 		}
 		//draws text if the button is pressed
 		if(isPressed){
 			fill(255);
-			textSize(15);
-			text(theText,x+12,y+12);
+			textSize(theLength/1.5);
+			text(theText,x+theLength/2,y+theLength/2);
 		}
 	}
 
@@ -238,7 +238,7 @@ public class MSButton{
 }
 
 void setup (){
-    size(500, 500);
+    size(900, 900);
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
