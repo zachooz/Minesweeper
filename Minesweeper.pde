@@ -1,11 +1,11 @@
 private TheBoard b1;
 private Boolean gameOver = false;
 private int bombCount = 0;
-public static final int BOMBAMOUNT = 1000;
+public static final int BOMBAMOUNT = 70;
 private boolean firstClick = true;
 //Creates the game boeard
 public class TheBoard{
-	private MSButton[][] buttons = new MSButton[100][100]; //2d array of minesweeper buttons
+	private MSButton[][] buttons = new MSButton[25][25]; //2d array of minesweeper buttons
 
 	//initialize the board
 	public TheBoard(){
@@ -76,7 +76,7 @@ public class TheBoard{
 public class MSButton{
 	private int x;
 	private int y;
-	public static final int theLength = 9;
+	public static final int theLength = 24;
 	private int val = 0;
 	private String theText="";
 	private boolean isPressed = false;
@@ -238,7 +238,7 @@ public class MSButton{
 }
 
 void setup (){
-    size(900, 900);
+    size(600, 600);
     textAlign(CENTER,CENTER);
     //rectMode(CENTER);   
     b1=new TheBoard(); 
@@ -285,12 +285,7 @@ void mouseClicked() {
     }
 
   } else if (mouseButton == RIGHT) {
-    if(firstClick){
-    	firstClick=false;
-    	b1.genBoard();
-    }
-
-  	if(!gameOver){
+    if(!gameOver && !firstClick){
     	b1.checkFlag();
 	}else{
     	b1=new TheBoard(); 
