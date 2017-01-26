@@ -1,6 +1,8 @@
 Minesweeper
 ==================
-The classic minesweeper.
+The classic minesweeper made for my highschool CS class!
+
+http://zachooz.github.io/Minesweeper/
 
 Controls
 --------------------------------
